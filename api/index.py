@@ -264,7 +264,7 @@ def create_account_method():
           return render_template('login.html', navbar=None, page_options=load_page_options(db, world_name), 
                                  message="")
 
-if __name__ == '__main__':
-    import os
-    port = int(os.environ.get('PORT', 8080))
-    app.run(debug=True, threaded=False, host='0.0.0.0', port=port)
+#if __name__ == '__main__':
+#    import os
+#    port = int(os.environ.get('PORT', 8080))
+#    app.run(debug=True, threaded=False, host='0.0.0.0', port=port)
