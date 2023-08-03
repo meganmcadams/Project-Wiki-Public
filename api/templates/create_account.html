@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<div style="margin:0; height: 100vh; display: flex; align-items: center; justify-content: center;">
+    <div class="login-card">
+        <div class="login-contents">
+            <h1 class="header-light text-center">Create Account</h1>
+            <form action="{{ url_for('page_create_account') }}" method="post">
+                <input name="email" class="login-text" type="email" placeholder="email">
+                <input name="username" class="login-text" type="text" placeholder="username">
+                <input name="password" class="login-text" type="password" placeholder="password">
+                <input name="password_confirm" class="login-text" type="password" placeholder="confirm password">
+
+                <div class="text-light margined-bottom text-center">
+                    <p>{{message}}</p>
+                    Already have an account? <a class="text-light" href="{{ url_for('page_login') }}">Login</a>
+                    <br>
+                    <a class="text-light" href="{{ url_for('page_home') }}">Continue as guest</a>
+                </div>
+                <button type="submit" class="btn secondary-btn my-2 my-sm-0 login-button margined-bottom">Create</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

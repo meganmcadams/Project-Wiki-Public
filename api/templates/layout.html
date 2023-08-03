@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="preload" href="{{url_for('static', filename='assets/isles-of-lloryan.jpg')}}" as="image" />
+
+    <title>Caelus Universe</title>
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='assets/logo.ico') }}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+
+    {% if navbar != False %}
+
+        <nav class="margined navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid navbar-left">
+                <img class="padded-right" src="{{ url_for('static', filename='assets/logo.png') }}" height="50px" alt="navbar logo">
+                <a class="navbar-brand" href="{{ url_for('page_home') }}">Caelus Universe</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main_nav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="main_nav">
+                    <ul class="navbar-nav">
+                      {% for top_item in page_options.navbar %}
+                        {% if top_item.dropdown %}
+                          <li class="nav-item dropdown">
+                          <a class="text-center nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">{{top_item.name}}</a>
+                          <ul class="dropdown-menu">
+                          {% for item in top_item.dropdown recursive %}
+                            {% if item.dropdown %}
+                              <li>
+                              <a class="dropdown-item" href="#"> {{item.name}} &raquo; </a>
+                              <ul class="submenu dropdown-menu">
+                              {{ loop(item.dropdown) }}
+                              </ul>
+                              </li>
+                            {% else %}
+                              <li><a class="dropdown-item" href="{{ url_for('page_pages', category=item.name) }}"> {{item.name}} </a></li>
+                            {% endif %}
+                          {% endfor %}
+                          </ul>
+                        {% else %}
+                          <li class="text-center nav-item"> <a class="nav-link" href="{{ url_for('page_pages', category=top_item.name) }}">{{top_item.name}}</a> </li>
+                        {% endif %}
+                      {% endfor %}
+                      <li class="text-center nav-item"> <a class="nav-link" href="{{ url_for('page_attributions') }}">Attributions</a> </li>
+                    </ul>
+                </div> <!-- navbar collapse -->
+            </div> <!-- container-fluid -->
+            <div class="navbar-right">
+                <div class="buttons-container">
+                  <div class="dropdown my-2 my-lg-0 padded-right">
+                    <button class="btn primary-btn my-2 my-sm-0 dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      {{page_options.world_name}}
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                      {% for world in page_options.default_worlds.values() if not world.name == page_options.world_name%}
+                        <button class="dropdown-item" type="button">{{world.name}}</button>
+                      {% endfor %}
+                    </div>
+                  </div>
+              
+                  <div class="dropdown my-2 my-lg-0 padded-right">
+                    {% if current_user.is_authenticated %}
+                    <button class="btn primary-btn my-2 my-sm-0 dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      {{ current_user.username}}
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                      <a class="dropdown-item" href="#">Dashboard</a>
+                      <a class="dropdown-item" href="{{ url_for('page_logout') }}">Logout</a>
+                    </div>
+                    {% else %}
+                    <button class="btn primary-btn my-2 my-sm-0 dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Account
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                      <a class="dropdown-item" href="{{ url_for('page_create_account') }}">Create</a>
+                      <a class="dropdown-item" href="{{ url_for('page_login') }}">Login</a>
+                    </div>
+                    {% endif %}
+                  </div>
+                </div>
+              
+                <form class="my-2 my-lg-0 float-right">
+                  <input class="form-control mr-sm-2 padded-right search-bar" type="search" placeholder="Search" aria-label="Search">
+                </form>
+              </div>
+              
+
+        </nav>
+
+    {% endif %}
+
+</head>
+
+    <body>
+
+        {% if navbar != False %}
+
+            <div class="margined padded content">
+
+        {% else %}
+
+            <div>
+
+        {% endif %}
+
+        {% block content %}
+        {% endblock %}
+
+        </div>
+
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+
+        {% for script in page_options.scripts %}
+
+          <script src="{{ url_for('static', filename='scripts/'+script+'.js') }}"></script>
+
+        {% endfor %}
+        
+    </body>
+
+</html>

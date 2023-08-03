@@ -1,0 +1,557 @@
+:root {
+
+    --primary-red: #953130;
+    --primary-grey: #545454;
+    --primary-white: #F2F0EB;
+
+    --secondary-dark-red: #792322;
+    --secondary-red: #B26161;
+    --secondary-light-red: #CFA1A1;
+    --secondary-white: #FFFFFF;
+
+    --accent-dark-blue: #177E89;
+    --accent-blue: #5CB4BD;
+    --accent-white: #F1F1F1;
+
+    --header-font: Copperplate, "Copperplate Gothic Light", fantasy;
+    --body-font: Perpetua;
+
+    --text-colour: black;
+    --card-background: white;
+
+}
+
+/* Global */
+body, head, .body-font {
+    font-family: var(--body-font);
+}
+
+h1, h2, h3, h4, h5, h6, .header-font {
+    font-family: var(--header-font);
+    font-weight: 600;
+}
+
+textarea {
+    resize: none;
+}
+
+/* Other */
+.header {
+    color: var(--primary-red);
+    padding: 1rem;
+    font-weight: 600;
+    text-align: center;
+}
+
+.header-img-edit {
+    width: 30px;
+    height: 30px;
+    float: right;
+    margin-top: 30px;
+}
+
+.header-light {
+    color: var(--primary-white);
+    padding: 1rem;
+}
+
+.padded-header {
+    padding-top: 1.5rem;
+}
+
+.padded {
+    padding: 1rem;
+}
+
+.margined-bottom {
+    margin-bottom: 1rem !important;
+}
+.not-margined-bottom {
+    margin-bottom: 0 !important;
+}
+
+.text-light {
+    color: white;
+}
+.text-light a {
+    text-decoration: underline;
+}
+textarea {
+    min-width: 400px;
+    width: 60%;
+}
+
+.wrapper {
+    position: absolute;
+    height: 100%;
+    width: 80%;
+    background: white;
+    z-index: -10;
+    margin-left: 10%;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+}
+.page-util-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 1rem;
+    justify-content: center;
+}
+.infobox {
+    float: none;
+    width: 90%;
+    margin-left: 5%;
+}
+.edit-wrapper {
+    display: contents;
+}
+
+/* Buttons */
+.arrow {
+    height: 18px;
+    width: 18px;
+    margin: 0;
+    padding: 0;
+    vertical-align: middle;
+}
+.arrow svg {
+    display: flex;
+}
+.delete-btn {
+    background-color: white;
+    color: var(--secondary-dark-red);
+    line-height: 1;
+    font-size: 50px;
+    cursor: pointer;
+}
+
+.primary-btn {
+    background-color: var(--primary-red);
+    color: white !important; /* important to override <a> */
+}
+
+.secondary-btn {
+    background-color: var(--accent-white);
+    color: black;
+}
+
+.tertiary-btn {
+    background-color: var(--accent-dark-blue);
+    color: white;
+}
+
+.primary-btn, .secondary-btn, .tertiary-btn, .delete-btn {
+    transition-property: filter;
+    transition-duration: 0.5s;
+    border-radius: 10px;
+    border: none;
+}
+
+.primary-btn:hover, .tertiary-btn:hover, .delete-btn:hover {
+    filter: brightness(120%);
+}
+.secondary-btn:hover {
+    filter: brightness(80%);
+    color: black !important;
+}
+.primary-btn:hover, .secondary-btn:hover, .tertiary-btn:hover, .delete-btn:hover {
+    transition-property: filter;
+    transition-duration: 0.5s;
+}
+
+.dropdown-item:active, .dropdown-item.active { /* fix for the dropdown buttons' weird colour when clicked */
+    background-color: var(--accent-blue);
+}
+
+/* Info Box and Media-Specific */
+@media (max-width: 991px) { /* Small Devices */
+    .content {
+        width: 100%;
+        margin-left: 0;
+    }
+    .background-img {
+        height: 0;
+        width: 0;
+    }
+    .dropdown-menu .dropdown-menu {
+        margin-left: 0.7rem;
+        margin-right: 0.7rem;
+        margin-bottom: 0.5rem;
+    }
+    input {
+        max-width: 70%;
+    }
+}
+
+@media (min-width: 992px) { /* Medium/Large Devices */
+    .bottom-border {
+        border-bottom: 1px solid black;
+        margin-bottom: 2rem;
+    }
+    .margined {
+        max-width: 80%;
+        margin-left: 10%;
+    }
+    body {
+        background-image: url('../assets/isles-of-lloryan.jpg');
+        background-color: #7c664f;
+        background-attachment: fixed;
+    }
+    .content {
+        background-color: white;
+        overflow: auto;
+        min-height: 93vh;
+        padding-left: 3rem;
+        padding-right: 3rem;
+        position: absolute;
+        z-index: -10;
+        width: 100%;
+    }
+    .dropdown-menu li {
+        position: relative;
+    }
+    .dropdown-menu .submenu {
+        display: none;
+        position: absolute;
+        left: 100%;
+        top: -7px;
+    }
+    .dropdown-menu .submenu-left {
+        right: 100%;
+        left: auto;
+    }
+    .dropdown-menu > li:hover {
+        background-color: #f1f1f1;
+    }
+    .dropdown-menu > li:hover > .submenu {
+        display: block;
+    }
+}
+
+/* More Specific Media */
+@media (max-width: 991px) { /* Small Devices */
+    .navbar {
+        width: 100%;
+    }
+    .navbar-right {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: auto;
+    }
+    .buttons-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin: auto;
+    }
+     .search-bar {
+        width: 250px;
+        max-width: 95vw;
+     } 
+}
+
+@media (min-width: 992px) and (max-width: 1309px) { /* Medium Devices */
+    nav {
+        display: inline-table !important;
+        width: 100vw;
+    }
+    .navbar-right {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+    }
+    .button-container {
+        flex: 1;
+    }
+    .buttons-container {
+        display: flex;
+    }
+}
+
+@media (min-width: 1310px) { /* Large Devices */
+    .header {
+        text-align: left;
+    }
+    .infobox {
+        width: auto;
+        height: 100%;
+        float: right;
+        margin-left: 3rem; /* Spacing between the infobox and text */
+    }
+    .infobox-edit {
+        margin-left: auto;
+        order: 2 !important;
+    }
+    .edit-wrapper {
+        display: flex !important;
+    }
+    .page-auto-size {
+        width: auto;
+        float: left;
+        padding-right: 3rem;
+    }
+    .edit-attribute {
+        max-width: 30% !important;
+    }
+    .required-checkbox:checked:after {
+        font-size: 25px !important;
+    }
+    .required-checkbox {
+        width: 15px !important;
+        height: 15px !important;
+        font-family: var(--body-font);
+    }
+    .delete-btn {
+        font-size: 25px;
+    }
+    .page-util-buttons {
+        float: right;
+    }
+    .navbar-right {
+        display: flex;
+    }
+
+    .button-container:first-child {
+        order: 1;
+    }
+    .search-bar-container {
+        order: 2;
+        flex: 2;
+    }
+    .button-container:last-child {
+        order: 3;
+    }
+    .buttons-container {
+        display: flex;
+    }
+    .search-bar {
+        width: 200px;
+    }
+}
+
+@media (max-width: 1309px) { /* Small/Medium Device - FONT SIZES */
+    h1 {
+        font-size: 50px;
+    }
+    h2 {
+        font-size: 48px;        
+    }
+    h3 {
+        font-size: 46px;
+    }
+    h4 {
+        font-size: 44px;
+    }
+    h5 {
+        font-size: 42px;
+    }
+    h6 {
+        font-size: 40px;
+    }
+    p, .btn, a, .search-bar, b, body, head, button {
+        font-size: 25px;
+    }
+}
+
+.no-margins {
+    margin: 0;
+}
+
+
+.infobox {
+    border: 1px solid black;
+    padding: 1rem;
+    margin-bottom: 2rem;
+}
+.infobox img {
+    max-width: 12rem;
+    display: block;
+    margin: 0 auto;
+}
+.infobox-edit {
+    order: 0;
+}
+.sections-edit {
+    order: 1;
+}
+
+/* Navbar */
+.search-bar-img {
+    height: 20px;
+    width: 20px;
+    align-self: center;
+}
+.float-right {
+    display: flex;
+    float: right;
+}
+.padded-right {
+    padding-right: 0;
+    margin-right: 1rem;
+}
+.vertical-align {
+    display: inline-block;
+    vertical-align: middle;
+}
+.nav-tabs {
+    background-color: var(--primary-grey);
+}
+
+/* Login */
+.login-card {
+    min-width: 300px;
+    width: 40%;
+    max-width: 550px;
+    background-color: var(--primary-red);
+    border-radius: 10px;
+    box-shadow: 4px 4px 4px black;
+}
+
+.login-text {
+    min-width: 225px;
+    width: 17%;
+    display: flex;
+    margin: 1rem auto 1rem auto;
+    padding: 0.25rem;
+}
+
+.login-button {
+    text-align: center;
+    min-width: 150px;
+    width: 10%;
+    margin: 1rem auto 1rem auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-contents {
+    margin: auto;
+}
+
+/* Editing */
+
+.required-checkbox{
+    -webkit-appearance: initial;
+    appearance: initial;
+    width: 30px;
+    height: 30px;
+    border: none;
+    background: lightgrey;
+    position: relative;
+    vertical-align: middle;
+    cursor: pointer;
+}
+.required-checkbox:checked {
+    background: lightgrey;
+}
+.required-checkbox:checked:after {
+    content: "\204E";
+    color: var(--secondary-dark-red);
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translate(-50%,-50%);
+    -moz-transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%);
+    font-size: 50px;
+    line-height: 0;
+}
+
+.edit-input {
+    padding: 0px !important;
+    margin: -1px;
+    border: 1px solid var(--accent-dark-blue);   
+    line-height: normal !important;
+}
+.edit-input-textarea {
+    height: 95px;
+    min-width: 500px;
+    width: 45vw;
+    max-width: 800px;
+}
+.infobox textarea {
+    width: 100%;
+    min-width: auto;
+}
+.html-button {
+    display: flex;
+    border-radius: 0;
+    padding: 0 0.5rem 0 0.5rem;
+}
+.html-button-wrapper {
+    display: flex;
+}
+.edit-attribute {
+    max-width: 50vw;
+    width: fit-content;
+}
+.header-2 {
+    font-weight: 600;
+}
+
+/* Page Cards */
+.page-card {
+    border: 1px solid black;
+    box-shadow: 2px 2px 2px black;
+    padding: 1rem;
+    width: 500px;
+    max-width: 85vw;
+    color: var(--text-colour);
+    background-color: var(--card-background);
+    display: flow-root;
+    margin: 1rem;
+}
+
+.page-line {
+    display: flex;
+    overflow-x: scroll;
+}
+
+.page-card-accent {
+    color: var(--accent-white);
+    background-color: var(--accent-dark-blue);
+}
+
+.page-card-margins {
+    margin: 0.5rem;
+}
+.page-card-img {
+    max-width: 100px;
+    margin-right: 1rem;
+    margin-bottom: 1rem;
+}
+.centered-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+}
+
+/* Timeline Cards */
+.timeline-line {
+    width: 5px;
+    background-color: black;
+    height: 2rem;
+    justify-self: center;
+}
+
+.timeline-date {
+    color: var(--accent-dark-blue);
+    font-style: italic;
+}
+
+/* Home Page */
+.side-scroll {
+    white-space: nowrap;
+    overflow-x: auto;
+}
+
+.side-scroll li {
+    display: inline-block;
+    float: none;
+}

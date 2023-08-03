@@ -1,0 +1,55 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<h1 class="header bottom-border">
+    {{ template.info.name }}
+    <div class="page-util-buttons">
+        <a style="text-decoration: none;" href="{{ url_for('page_create_page', location=location, template_name=page_id, new_page='existing') }}" class="float-right body-font btn primary-btn my-2 my-sm-0">Edit</a>
+    </div>
+</h1>
+
+<div class="infobox">
+    <p>
+        {% if template.info.img_required == True %}
+            <a href="{{template.info.img_attribution}}" target="_blank"><img src="{{template.info.img}}" alt="character-image"></a>
+        {% endif %}
+
+        <!-- First attribute section with a non-padded header -->
+        <h5>{{ attributes[0][-1].name }}</h5> 
+        {% for j in range(0, attributes[0][-1].count) %} <!-- last field is the info field containing count -->
+            {% if attributes[0][-1].type != 'single' %}
+                <b>{{ attributes[0][j].name }}:</b> 
+            {% endif %}
+            {{ attributes[0][j].content }} <br> 
+        {% endfor %}
+
+        <!-- All other attribute sections with padded headers -->
+        {% for i in range(1, attributes|length) %}
+
+            <h5 class="padded-header">{{ attributes[i][-1].name }}</h5>
+            {% for j in range(0,attributes[i][-1].count) %} <!-- last field is the info field containing count -->
+                {% if attributes[i][-1].type != 'single' %}
+                    <b>{{ attributes[i][j].name }}:</b> 
+                {% endif %}
+                {{ attributes[i][j].content }} <br> 
+            {% endfor %}
+
+        {% endfor %}
+    </p>
+</div>
+
+<!-- Sections -->
+{% for i in range(0, sections|length) %}
+    {% if i == 0 %}
+        <h2>
+    {% else %}
+        <h2 class="padded-header">
+    {% endif %}
+    {{sections[i]['name']}}</h2>
+
+    <p>
+        {{sections[i]['content']}}
+    </p>
+{% endfor %}
+
+{% endblock %}

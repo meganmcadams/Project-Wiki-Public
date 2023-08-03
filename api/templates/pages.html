@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+{% block content %}
+    
+<h1 class="header bottom-border">{{category}}</h1>
+
+<div class="centered-content">
+
+    {% for page in pages %}
+
+        <a style="text-decoration: none;" href="{{url_for('page_display_page', location=page.info.collection, page_id=page.info.page_id)}}">
+            <div class="page-card">
+                <h2>{{page.info.name}}</h2>
+                <img src="{{page.info.img}}" class="page-card-img" ALIGN="left">
+                <p>
+                    {{page.info.preview}}
+                </p>
+            </div>
+        </a>
+
+    {% endfor %}
+
+</div>
+
+{% endblock %}

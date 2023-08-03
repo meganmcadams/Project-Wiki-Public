@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+{% block content %}
+    
+<div style="margin:0; height: 80vh; display: flex; align-items: center; justify-content: center; overflow-y: clip;">
+    <div class="login-card">
+        <div class="login-contents">
+            <h1 class="header-light text-center">401</h1>
+            <div class="text-light text-center">
+                <p style="margin-bottom: 0;">
+                    You are not authorized to visit this page!
+                    Here's some possible reasons for why:
+                </p>
+                <ul style="margin: auto; text-align: initial; width: fit-content; padding-left: 0;">
+                    <li> You are not logged in. </li>
+                    <li> You have been removed as an editor. </li>
+                    <li> You are in the wrong world. </li>
+                </ul>
+            </div>
+            <div style="display: flex; margin: 1rem;">
+                <button onclick="history.back()" class="btn secondary-btn my-2 my-sm-0 login-button margined-bottom">Go Back</button>
+                <a href="{{ url_for('page_home') }}" class="btn secondary-btn my-2 my-sm-0 login-button margined-bottom">Home</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
